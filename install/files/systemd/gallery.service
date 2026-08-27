@@ -1,0 +1,15 @@
+[Unit]
+Description=Pibooth local gallery
+After=network.target
+
+[Service]
+Type=simple
+User=pi
+Environment=GALLERY_PORT=8081
+Environment=GALLERY_SESSION_FILE=/tmp/pibooth-session-start
+ExecStart=/usr/bin/python3 /home/pi/gallery.py
+Restart=on-failure
+RestartSec=3
+
+[Install]
+WantedBy=multi-user.target

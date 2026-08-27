@@ -291,6 +291,10 @@ def get_event_pos(display_size, event):
     :return: position (x, y) in px
     """
     if event.type in (pygame.FINGERDOWN, pygame.FINGERMOTION, pygame.FINGERUP):
-        finger_pos = (event.x * display_size[0], event.y * display_size[1])
+        # The panel is mounted upside down and the display is rotated by the
+        # firmware (display_hdmi_rotate=2), but SDL reports touches in raw,
+        # unrotated panel coordinates. Mirror both axes so a touch lands where
+        # the user sees it. Removing this makes every tap hit the opposite side.
+        finger_pos = ((1 - event.x) * display_size[0], (1 - event.y) * display_size[1])
         return finger_pos
     return event.pos

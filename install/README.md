@@ -175,9 +175,14 @@ branché sur la borne.
 ### Cloisonnement du réseau invités
 
 Le hotspot est ouvert à des inconnus : la même table nftables applique donc un
-**refus par défaut** sur les paquets entrants du hotspot, et n'autorise que ce
-dont un invité a besoin — DNS et DHCP (53, 67), portail captif (80), galerie
+**refus par défaut** sur les paquets entrants du hotspot, et n'autorise que le
+nécessaire — DNS et DHCP (53, 67), **mDNS (5353)**, portail captif (80), galerie
 (8081), et `echo-request`.
+
+Le mDNS n'est pas là pour les invités mais pour **l'imprimante photo**, qui
+rejoint ce même réseau : CUPS l'atteint en `dnssd://`, et sans le port 5353 elle
+reste indéfiniment « Unable to locate printer ». C'est le piège de ce hotspot —
+il ne transporte pas que des invités, mais aussi du matériel du photobooth.
 
 Restent donc inaccessibles depuis le réseau invités :
 
@@ -204,6 +209,7 @@ caractères de contrôle et les longueurs hors spécification (32 octets de SSID
 | « mot de passe incorrect » sur le hotspot | profil homonyme mémorisé sur le téléphone | « oublier ce réseau » sur l'appareil |
 | La galerie ne s'ouvre pas seule | comportement normal d'Android | une notification apparaît, un tap suffit |
 | Le hotspot tombe après un ajout de Wi-Fi | connexion non épinglée | `./install.sh --only network` |
+| Imprimante « Unable to locate printer » | mDNS bloqué, ou Avahi démarré avant le hotspot | vérifier le port 5353 dans la table nftables, puis `sudo systemctl restart avahi-daemon` |
 | pibooth ne démarre pas | dépendance ou matériel | `~/pibooth/pibooth/bin/pibooth-diag` |
 | Le tactile répond à l'opposé | retournement perdu après une mise à jour pip | `./install.sh --only display` |
 

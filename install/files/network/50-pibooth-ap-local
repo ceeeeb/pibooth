@@ -12,7 +12,9 @@ NFT=/usr/sbin/nft
 TABLE=pibooth-ap-local
 INTERFACE_NAME=wlan1
 GUEST_TCP_PORTS="53, 80, 8081"
-GUEST_UDP_PORTS="53, 67"
+# 5353 is mDNS: the photo printer joins this same network and CUPS reaches it
+# over dnssd://, so dropping it leaves the printer permanently "not located".
+GUEST_UDP_PORTS="53, 67, 5353"
 
 INTERFACE="$1"
 ACTION="$2"

@@ -1,0 +1,48 @@
+#!/bin/sh
+# Confine the guest hotspot.
+#
+# forward chain: guests reach the Pi's own services but never the internet.
+#   NetworkManager's nm-shared-* table masquerades and forwards freely; this
+#   table runs at a higher priority and drops anything leaving the hotspot.
+#
+# input chain: guests reach only the services meant for them. The Wi-Fi portal
+#   (8080) drives nmcli through sudo and SSH (22) is a shell, so both stay
+#   reachable from the operator LAN only -- never from the guest network.
+NFT=/usr/sbin/nft
+TABLE=pibooth-ap-local
+INTERFACE_NAME=wlan1
+GUEST_TCP_PORTS="53, 80, 8081"
+GUEST_UDP_PORTS="53, 67"
+
+INTERFACE="$1"
+ACTION="$2"
+
+[ "$INTERFACE" = "$INTERFACE_NAME" ] || exit 0
+
+drop_table() {
+    $NFT list table ip $TABLE >/dev/null 2>&1 && $NFT delete table ip $TABLE
+    return 0
+}
+
+case "$ACTION" in
+    up)
+        drop_table
+        $NFT add table ip $TABLE
+
+        $NFT add chain ip $TABLE forward "{ type filter hook forward priority -10; policy accept; }"
+        $NFT add rule ip $TABLE forward iifname "$INTERFACE_NAME" oifname != "$INTERFACE_NAME" drop
+
+        # Default-deny for guests: everything not listed below is dropped.
+        $NFT add chain ip $TABLE input "{ type filter hook input priority -10; policy accept; }"
+        $NFT add rule ip $TABLE input iifname != "$INTERFACE_NAME" accept
+        $NFT add rule ip $TABLE input ct state established,related accept
+        $NFT add rule ip $TABLE input udp dport "{ $GUEST_UDP_PORTS }" accept
+        $NFT add rule ip $TABLE input tcp dport "{ $GUEST_TCP_PORTS }" accept
+        $NFT add rule ip $TABLE input icmp type echo-request accept
+        $NFT add rule ip $TABLE input drop
+        ;;
+    down)
+        drop_table
+        ;;
+esac
+exit 0

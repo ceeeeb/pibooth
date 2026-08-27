@@ -1,0 +1,333 @@
+[GENERAL]
+# User interface language: 'br', 'de', 'dk', 'en', 'es', 'fr', 'hu', 'it', 'nl', 'no' or 'pt'
+language = fr
+
+# Path to save pictures (list of quoted paths accepted)
+directory = /home/pi/Pictures/pibooth
+
+# Start pibooth at Raspberry Pi startup
+autostart = True
+
+# How long to wait in seconds before start pibooth at Raspberry Pi startup
+autostart_delay = 0
+
+# In debug mode, exceptions are not caught, logs are more verbose, pictures are cleared at startup
+debug = False
+
+# Path to custom plugin(s) not installed with pip (list of quoted paths accepted)
+plugins = 
+
+# Plugin names to be disabled after startup (list of quoted names accepted)
+plugins_disabled = 
+
+# Enable a virtual keyboard in the settings interface
+vkeyboard = False
+
+[WINDOW]
+# The (width, height) of the display window or 'fullscreen'
+size = fullscreen
+
+# Background RGB color or image path
+background = (0, 0, 0)
+
+# Font name or file path used for app texts
+font = Amatic-Bold
+
+# Text RGB color
+text_color = (255, 255, 255)
+
+# Blinking background when a capture is taken
+flash = False
+
+# Animate the last taken picture by displaying captures one by one
+animate = False
+
+# How long is displayed the capture in seconds before switching to the next one
+animate_delay = 0.2
+
+# On 'finish' state: how long is displayed the final picture in seconds (0 if never shown)
+finish_picture_delay = 0
+
+# On 'wait' state: how long is displayed the final picture in seconds before being hidden (-1 if never hidden)
+wait_picture_delay = -1
+
+# How long is displayed the 'chosen' state:  (0 if never shown)
+chosen_delay = 4
+
+# Show arrows to indicate physical buttons: 'bottom', 'top', 'hidden' or 'touchscreen'
+arrows = hidden
+
+# Apply horizontal offset to arrows position
+arrows_x_offset = -375
+
+# How long is the preview in seconds
+preview_delay = 3
+
+# Show a countdown timer during the preview
+preview_countdown = True
+
+# Stop the preview before taking the capture
+preview_stop_on_capture = False
+
+[PICTURE]
+# Orientation of the final picture: 'auto', 'portrait' or 'landscape'
+orientation = auto
+
+# Possible choice(s) of captures numbers (numbers between 1 to 4)
+captures = 1
+
+# Effect applied to the captures (list of quoted names accepted)
+captures_effects = none
+
+# Crop each capture border in order to fit the paper size
+captures_cropping = True
+
+# Thick (in pixels) between captures and picture borders/texts
+margin_thick = 10
+
+# Main text displayed
+footer_text1 = "                               60 ans Stéphane"
+
+# Secondary text displayed
+footer_text2 = "          28/08/2026"
+
+# RGB colors used for footer texts (list of tuples accepted)
+text_colors = (255, 160, 37)
+
+# Fonts name or file path used for footer texts (list of quoted names accepted)
+text_fonts = ('Amatic-Bold', 'AmaticSC-Regular')
+
+# Alignments used for footer texts: 'left', 'center' or 'right' (list of quoted names accepted)
+text_alignments = center
+
+# Overlay path (PNG file) with same aspect ratio than final picture (list of quoted paths accepted)
+overlays = 
+
+# Background RGB color or image path (list of tuples or quoted paths accepted)
+backgrounds = (255, 255, 255)
+
+[CAMERA]
+# Adjust ISO for lighting issues, can be different for preview and capture (list of integers accepted)
+iso = 200
+
+# Flip horizontally the capture
+flip = False
+
+# Rotation of the camera: 0, 90, 180 or 270, can be different for preview and capture (list of integers accepted)
+rotation = 0
+
+# Resolution for camera captures (preview will have same aspect ratio)
+resolution = (4608,2592)
+
+# Delete captures from camera internal memory (when applicable)
+delete_internal_memory = False
+
+# Boolean value to use Picamera2 library and the new raspberry pi camera v3
+# Required by 'picamera2' plugin
+use_picamera2 = 1
+
+[PRINTER]
+# Name of the printer defined in CUPS (or use the 'default' one)
+printer_name = default
+
+# Print options passed to the printer, shall be a valid Python dictionary
+printer_options = {'StpBorderless': 'True', 'StpImageType': 'Photo'}
+
+# How long is the print view in seconds (0 to skip it)
+printer_delay = 0
+
+# Number of pages automatically sent to the printer (or use 'max' to reach max duplicate)
+auto_print = 0
+
+# Maximum number of printed pages before warning on paper/ink levels (-1 = infinite)
+max_pages = -1
+
+# Maximum number of duplicate pages sent to the printer (avoid paper waste)
+max_duplicates = 3
+
+# Print 1, 2, 3 or 4 picture copies per page
+pictures_per_page = 1
+
+[CONTROLS]
+# How long to press a single hardware button in seconds
+debounce_delay = 0.2
+
+# How long to press multiple hardware buttons in seconds
+multi_press_delay = 0.5
+
+# Physical GPIO IN pin to take a picture
+picture_btn_pin = 11
+
+# Physical GPIO OUT pin to light a LED when picture button is pressed
+picture_led_pin = 16
+
+# Physical GPIO IN pin to print a picture
+print_btn_pin = 32
+
+# Physical GPIO OUT pin to light a LED when print button is pressed
+print_led_pin = 15
+
+# Physical GPIO OUT pin to light a LED at pibooth startup (list of pins accepted)
+# Required by 'extra-lights' plugin
+startup_led_pin = 29
+
+# If True, startup LED is lighting by setting pin(s) to HIGH else by setting to LOW
+# Required by 'extra-lights' plugin
+startup_led_active_high = True
+
+# Physical GPIO OUT pin to light a LED during the entire capture sequence (list of pins accepted)
+# Required by 'extra-lights' plugin
+preview_led_pin = 31
+
+# If True, preview LED is lighting by setting pin(s) to HIGH else by setting to LOW
+# Required by 'extra-lights' plugin
+preview_led_active_high = True
+
+# Physical GPIO OUT pin to light a LED when the capture is taken (list of pins accepted)
+# Required by 'extra-lights' plugin
+flash_led_pin = 33
+
+# If True, flash LED is lighting by setting pin(s) to HIGH else by setting to LOW
+# Required by 'extra-lights' plugin
+flash_led_active_high = True
+
+[GALLERY_QR]
+# Enable the local gallery plugin (writes session marker)
+# Required by 'gallery-qr' plugin
+activate = True
+
+# Display the QR code on the wait screen
+# Required by 'gallery-qr' plugin
+show_qr = False
+
+# Host or IP for the gallery URL (empty = autodetect)
+# Required by 'gallery-qr' plugin
+host = 
+
+# Gallery service port
+# Required by 'gallery-qr' plugin
+port = 8081
+
+# Marker file: mtime is session-start, content is the photos dir
+# Required by 'gallery-qr' plugin
+session_file = /tmp/pibooth-session-start
+
+# QR code position (top-left, top-right, bottom-left, bottom-right, center)
+# Required by 'gallery-qr' plugin
+qr_position = bottom-left
+
+# QR code box_size (3-10)
+# Required by 'gallery-qr' plugin
+qr_size = 5
+
+# QR code margin from screen edge in pixels
+# Required by 'gallery-qr' plugin
+qr_margin = 10
+
+[PCLOUD]
+# Enable upload to pCloud
+# Required by 'pcloud' plugin
+activate = True
+
+# pCloud account email
+# Required by 'pcloud' plugin
+email = A_RENSEIGNER
+
+# pCloud account password (stored in clear, chmod 600 recommended)
+# Required by 'pcloud' plugin
+password = A_RENSEIGNER
+
+# pCloud account region (US or EU)
+# Required by 'pcloud' plugin
+region = EU
+
+# Remote parent folder on pCloud
+# Required by 'pcloud' plugin
+folder_path = /Pibooth
+
+# Sub-folder (event album) inside folder_path; the public link points here
+# Required by 'pcloud' plugin
+album_name = Pibooth
+
+# QR code position (top-left, top-right, bottom-left, bottom-right, center)
+# Required by 'pcloud' plugin
+qr_position = top-right
+
+# QR code box_size (3-10)
+# Required by 'pcloud' plugin
+qr_size = 5
+
+# QR code margin from screen edge in pixels
+# Required by 'pcloud' plugin
+qr_margin = 10
+
+[NEXTCLOUD]
+# Enable upload on Nextcloud
+# Required by 'nextcloud' plugin
+activate = True
+
+# Path to photos directory
+# Required by 'nextcloud' plugin
+rep_photos_nextcloud = Photos
+
+# Album where pictures are uploaded
+# Required by 'nextcloud' plugin
+album_name = Pibooth
+
+# URL Nextcloud Server
+# Required by 'nextcloud' plugin
+host_nextcloud = A_RENSEIGNER
+
+# Nextcloud User
+# Required by 'nextcloud' plugin
+user_nextcloud = A_RENSEIGNER
+
+# Nextcloud password
+# Required by 'nextcloud' plugin
+pass_nextcloud = A_RENSEIGNER
+
+# Use Nextcloudcmd for Synchronize Local et Remote directory
+# Required by 'nextcloud' plugin
+useSynchronize = True
+
+# Gallery app for QR code URL (direct, photos, or gallery)
+# Required by 'nextcloud' plugin
+gallery_app = direct
+
+# Check available disk space before upload
+# Required by 'nextcloud' plugin
+check_quota = True
+
+# Minimum free space in MB required for upload
+# Required by 'nextcloud' plugin
+min_space_mb = 100
+
+# QR code position on screen (top-left, top-right, bottom-left, bottom-right, center)
+# Required by 'nextcloud' plugin
+qr_position = top-left
+
+# QR code size (box_size parameter, 3-10)
+# Required by 'nextcloud' plugin
+qr_size = 5
+
+# QR code margin from screen edge in pixels
+# Required by 'nextcloud' plugin
+qr_margin = 10
+
+# Print QR Code on screen
+# Required by 'nextcloud' plugin
+printQrCode = False
+
+[FORGET_BUTTON]
+# Physical GPIO IN pin for forget button (BOARD numbering, 0 to disable)
+# Required by 'forget_button' plugin
+forget_btn_pin = 36
+
+# Physical GPIO OUT pin to light LED when forget button is pressed (0 to disable)
+# Required by 'forget_button' plugin
+forget_led_pin = 37
+
+# How long to press the forget button in seconds
+# Required by 'forget_button' plugin
+debounce_delay = 0.3
+

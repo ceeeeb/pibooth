@@ -1,0 +1,13 @@
+[Unit]
+Description=Pibooth Wi-Fi portal
+After=network.target NetworkManager.service
+
+[Service]
+Type=simple
+User=pi
+ExecStart=/usr/bin/python3 /home/pi/wifi-portal.py
+Restart=on-failure
+RestartSec=3
+
+[Install]
+WantedBy=multi-user.target

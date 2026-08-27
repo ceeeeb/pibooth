@@ -7,7 +7,7 @@ long_description = open(README, encoding='utf-8').read() if osp.isfile(README) e
 
 setup(
     name='pibooth-ceeeeb',
-    version='2.0.8.2',
+    version='2.0.8.3',
     description='A photo booth application in pure Python for the Raspberry Pi (custom fork by ceeeeb).',
     long_description=long_description,
     long_description_content_type='text/x-rst',

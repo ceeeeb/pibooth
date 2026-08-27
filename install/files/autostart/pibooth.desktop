@@ -1,0 +1,4 @@
+[Desktop Entry]
+Name=pibooth
+Exec=/home/pi/start-pibooth.sh
+Type=application

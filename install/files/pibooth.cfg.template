@@ -128,7 +128,7 @@ use_picamera2 = 1
 
 [PRINTER]
 # Name of the printer defined in CUPS (or use the 'default' one)
-printer_name = default
+printer_name = A_RENSEIGNER
 
 # Print options passed to the printer, shall be a valid Python dictionary
 printer_options = {'StpBorderless': 'True', 'StpImageType': 'Photo'}

@@ -96,7 +96,14 @@ le nouveau**. Il faut alors faire « oublier ce réseau » sur chaque appareil.
 2. **Imprimante**, si présente :
    ```bash
    ~/pibooth/pibooth/bin/pibooth-printcfg
+   lpstat -p                    # relever le nom exact de la file CUPS
    ```
+   Puis renseigner `printer_name` dans `pibooth.cfg` avec ce nom exact.
+   **Ne pas laisser `default`** : pibooth lit le défaut *serveur*
+   (`/etc/cups/lpoptions`), pas le défaut *utilisateur* (`~/.cups/lpoptions`)
+   que pose `lpadmin -d`. Le premier étant généralement absent, pibooth se
+   rabat sur « la première imprimante de la liste » — au risque d'envoyer les
+   photos sur une imprimante bureautique A4.
 3. **Redémarrer** pour appliquer la rotation d'écran :
    ```bash
    sudo reboot

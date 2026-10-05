@@ -1,6 +1,14 @@
 pibooth-ceeeeb
 ==============
 
+.. warning::
+
+   **This repository is archived.** Development moved to
+   `ceeeeb/pibooth-vim4 <https://github.com/ceeeeb/pibooth-vim4>`_, which runs
+   on the Raspberry Pi and on other boards (Khadas VIM4). Every release of
+   ``pibooth-ceeeeb`` since 2.0.9 comes from there; this repository stopped
+   at 2.0.8.3.
+
 Custom fork of `pibooth <https://github.com/pibooth/pibooth>`_ — a photo
 booth application in pure Python for the Raspberry Pi — maintained by
 ceeeeb for personal events.
